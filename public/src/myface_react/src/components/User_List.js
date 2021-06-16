@@ -2,24 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 
-export function Posts() {
+export function UserList() {
     const [myData, setMyData] = useState(null);
-    const [pathname, setPathname] = useState("/posts");
-    const { page } = useParams();
-    console.log(page);
+    const [page, setPage] = useState(1);
+    
+    // let pathname = window.location.pathname;
+    // // pathname = posts/?page=4&pageSize=10
+    // console.log(pathname)
 
- 
-    // if (page === undefined) {
-    //     pathname = "/posts/"
-    // } else {
-    //     pathname = `/posts/${page}`
-    // }
+    // //localhost:3000/
+    // //http://localhost:3001/posts
+
+    let pathname = "";
+    if (page <= 1) {
+        pathname = "/users/"
+    } else {
+        pathname = `/users/?page=${page}&pageSize=10`
+    }
+
+
 
     useEffect(() => {
+        fetch(`http://localhost:3001/users/?page=${page}&pageSize=10`)
+            .then(response => response.json())
+            .then(data => setMyData(data))
         fetch(`http://localhost:3001${pathname}`)
             .then(response => response.json())
             .then(data => setMyData(data))
     }, [pathname]);
+
+    //http://localhost:3001/posts/?page=2&pageSize=10  page2
 
     console.log(myData);
     if (!myData) {
@@ -45,8 +57,8 @@ export function Posts() {
             <ul>
                 {dataArray}
             </ul>
-            <Link to={myData.next} onClick={() => setPathname(myData.next)}>Next</Link>
-            {myData.previous && 
-            <Link to={myData.previous}>Prev</Link>}
+            <Link to={`/posts/${page + 1}`}></Link>
+            <button onClick={() => setPage(page + 1)} >Next page</button>
+            <button onClick={() => setPage(page - 1)} >Previous page</button>
         </div>)
 }
