@@ -1,0 +1,13 @@
+$backgroundColor: #252A38;
+$darkerBackgroundColor: #151820;
+$foreground: #DCDCDC;
+$primary: #2985FF;
+
+body {
+    background-color: $backgroundColor;
+    color: $foreground;
+}
+
+.posts {
+    background-color: $darkerBackgroundColor;
+}

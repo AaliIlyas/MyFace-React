@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { Posts } from './components/Posts';
 import { UserList } from './components/User_List';
 import { UserDetails } from './components/User_Details';
@@ -39,6 +39,9 @@ function App() {
                     <Route exact path="/posts/:page">
                         <Posts />
                     </Route>
+					<Route path="/">
+						Error: Page does not exist
+					</Route>
                 </Switch>
             </div>
         </Router>

@@ -20,7 +20,7 @@ export function UserDetails() {
     }
 
     const postsArray = myData.posts.map(post =>
-        <li>
+        <li className="posts">
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
@@ -29,7 +29,7 @@ export function UserDetails() {
     );
 
     const likesArray = myData.posts.map(post =>
-        <li>
+        <li className="posts">
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
@@ -38,7 +38,7 @@ export function UserDetails() {
     );
 
     const dislikesArray = myData.posts.map(post =>
-        <li>
+        <li className="posts">
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
