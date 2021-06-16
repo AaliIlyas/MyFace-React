@@ -1,43 +1,71 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 export function UserDetails() {
-    const [myData, setMyData] = useState([]);
+    const [myData, setMyData] = useState(null);
+    const { userId } = useParams();
 
-    const randomUserId = Math.floor(Math.random * 100);
     useEffect(() => {
-        fetch(`http://localhost:3001/users/${randomUserId}`)
+        fetch(`http://localhost:3001/users/${userId}`)
             .then(response => response.json())
             .then(data => setMyData(data))
-    }, []);
+    }, [userId]);
 
-    // const dataArray = myData.results.map(posts => {
-    //     return (<li>
-    //         <h2>{posts.message}</h2>
-    //         <h3>{posts.postedBy.name}</h3>
-    //         <img src={posts.imageUrl} />
-    //         <p>Likes🔥: {posts.likedBy.length} </p>
-    //         <p>Dislikes 🤢: {posts.dislikedBy.length} </p>
-    //     </li>)
-    // });
-
-    if (myData !== undefined) {
-
+    console.log(myData);
+    if (!myData) {
         return (
             <div>
-                <h1>{myData.name}</h1>
-                <p>{myData.username}</p>
-                <p>{myData.email}</p>
-                <img src={myData.coverImageUrl}/>
-                <img src={myData.profileImageUrl}/>
-                <ul>
-                    {/* {dataArray} */}
-                </ul>
-            
-            </div>)
-    } else {
-        return (
-            <div>
-                <h1>No User</h1>
+                <h1>No Data</h1>
             </div>)
     }
+
+    const postsArray = myData.posts.map(post =>
+        <li>
+            <h4>{post.message}</h4>
+            <img src={post.imageUrl} />
+            <p>{post.createdAt}</p>
+            <img src={post.profileImageUrl} />
+        </li>
+    );
+
+    const likesArray = myData.posts.map(post =>
+        <li>
+            <h4>{post.message}</h4>
+            <img src={post.imageUrl} />
+            <p>{post.createdAt}</p>
+            <img src={post.profileImageUrl} />
+        </li>
+    );
+
+    const dislikesArray = myData.posts.map(post =>
+        <li>
+            <h4>{post.message}</h4>
+            <img src={post.imageUrl} />
+            <p>{post.createdAt}</p>
+            <img src={post.profileImageUrl} />
+        </li>
+    );
+
+    return (
+        <div>
+            <h1>{myData.name}</h1>
+            <h2>
+                {myData.username}
+            </h2>
+            <p>{myData.email}</p>
+            <img src={myData.profileImageUrl} />
+            <img src={myData.coverImageUrl} />
+            <h3>{myData.name}'s Posts</h3>
+            <ul>
+                {postsArray}
+            </ul>
+            <h3>Likes</h3>
+            <ul>
+                {likesArray}
+            </ul>
+            <h3>Likes</h3>
+            <ul>
+                {dislikesArray}
+            </ul>
+        </div>)
 }

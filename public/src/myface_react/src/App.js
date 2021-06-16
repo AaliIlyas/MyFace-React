@@ -2,7 +2,7 @@ import './App.css';
 import { Posts } from './components/Posts';
 import { UserList } from './components/User_List';
 import { UserDetails } from './components/User_Details';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 
 function App() {
     return (
@@ -10,7 +10,7 @@ function App() {
             <div className="App">
                 <ul>
                     <li>
-                        <Link to="/posts/">posts</Link>
+                        <Link to="/posts/">Posts</Link>
                     </li>
                     <li>
                         <Link to="/posts/create">Create new post</Link>
@@ -22,12 +22,15 @@ function App() {
 
                 <Switch>
                     <Route exact path="/">
-                        <Posts />
+                        <Redirect to="/posts" />
                     </Route>
                     <Route exact path="/users/">
                         <UserList />
                     </Route>
-                    <Route exact path="/users/:id">
+                    <Route exact path="/users/:page">
+                        <UserList />
+                    </Route>
+                    <Route path="/users/id/:userId">
                         <UserDetails />
                     </Route>
                     <Route exact path="/posts/">

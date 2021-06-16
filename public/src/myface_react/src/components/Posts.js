@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-
 export function Posts() {
     const [myData, setMyData] = useState(null);
-    const [pathname, setPathname] = useState("/posts");
     const { page } = useParams();
-    console.log(page);
-
- 
-    // if (page === undefined) {
-    //     pathname = "/posts/"
-    // } else {
-    //     pathname = `/posts/${page}`
-    // }
-
+    
     useEffect(() => {
-        fetch(`http://localhost:3001${pathname}`)
+        fetch(`http://localhost:3001/posts/?page=${page}&pageSize=10`)
             .then(response => response.json())
             .then(data => setMyData(data))
-    }, [pathname]);
+    }, [page]);
 
     console.log(myData);
     if (!myData) {
@@ -45,8 +35,7 @@ export function Posts() {
             <ul>
                 {dataArray}
             </ul>
-            <Link to={myData.next} onClick={() => setPathname(myData.next)}>Next</Link>
-            {myData.previous && 
-            <Link to={myData.previous}>Prev</Link>}
+            <Link to={`/posts/${isNaN(page) ? 2 :  parseInt(page) + 1}`}>Next</Link>
+            {myData.previous && !isNaN(page) && <Link to={`/posts/${parseInt(page) - 1}`}>Prev</Link>}
         </div>)
 }
