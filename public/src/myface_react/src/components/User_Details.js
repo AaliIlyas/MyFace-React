@@ -24,16 +24,18 @@ export function UserDetails() {
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
-            <img src={post.profileImageUrl} />
         </li>
     );
+
+    // if (flag){
+    //     postsArray.splice()
+    // }
 
     const likesArray = myData.posts.map(post =>
         <li className="posts">
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
-            <img src={post.profileImageUrl} />
         </li>
     );
 
@@ -42,30 +44,37 @@ export function UserDetails() {
             <h4>{post.message}</h4>
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
-            <img src={post.profileImageUrl} />
         </li>
     );
 
+    const firstName = myData.name.split(" ")[0];
+
     return (
         <div>
-            <h1>{myData.name}</h1>
-            <h2>
-                {myData.username}
-            </h2>
-            <p>{myData.email}</p>
-            <img src={myData.profileImageUrl} />
-            <img src={myData.coverImageUrl} />
-            <h3>{myData.name}'s Posts</h3>
-            <ul>
-                {postsArray}
-            </ul>
-            <h3>Likes</h3>
-            <ul>
-                {likesArray}
-            </ul>
-            <h3>Likes</h3>
-            <ul>
-                {dislikesArray}
-            </ul>
-        </div>)
+            <img className="cover-image" src={myData.coverImageUrl} />
+            <div className="body-container">
+                <div className="user-profile-container">
+                    <img className="profile-image" src={myData.profileImageUrl} />
+                    <div className="user-details">
+                        <h1>{myData.name}</h1>
+                        <h2>
+                            {myData.username}
+                        </h2>
+                        <p>{myData.email}</p>
+                    </div>
+                </div>
+                <h3>{firstName}'s Posts</h3>
+                <ul className="list-container">
+                    {postsArray}
+                </ul>
+                <h3>Posts {firstName} Liked</h3>
+                <ul className="list-container">
+                    {likesArray}
+                </ul>
+                <h3>Posts {firstName} Disliked</h3>
+                <ul className="list-container">
+                    {dislikesArray}
+                </ul>
+            </div>
+        </div >)
 }

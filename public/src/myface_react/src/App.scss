@@ -2,6 +2,20 @@ $backgroundColor: #252A38;
 $darkerBackgroundColor: #151820;
 $foreground: #DCDCDC;
 $primary: #2985FF;
+$fontFamily: 'Segoe UI', 'Open Sans', sans-serif;
+$regularFont: 400;
+$boldFont: 600;
+$lightFont: 300;
+$titleSizeMobile: 24px;
+$titleLHMobile: 32px;
+$titleSizeDesktop: 32px;
+$titleLHDesktop: 40px;
+$bodySizeMobile: 14px;
+$bodyLHMobile: 20px;
+$bodySizeDesktop: 16px;
+$bodyLHDesktop: 24px;
+$cardPaddingDesktop: 24px; 
+@import "User_Detail";
 
 body {
     background-color: $backgroundColor;

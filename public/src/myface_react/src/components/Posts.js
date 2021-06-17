@@ -11,7 +11,6 @@ export function Posts() {
             .then(data => setMyData(data))
     }, [page]);
 
-    console.log(myData);
     if (!myData) {
         return (
             <div>
@@ -20,7 +19,7 @@ export function Posts() {
     }
 
     const dataArray = myData.results.map(posts => 
-        <li>
+        <li className="posts">
             <h2>{posts.message}</h2>
             <h3>{posts.postedBy.name}</h3>
             <img src={posts.imageUrl} />
