@@ -34,7 +34,7 @@ export function UserDetails() {
         postsArray.splice(6, 4);
     }
 
-    const likesArray = myData.posts.map(post =>
+    const likesArray = myData.likes.map(post =>
         <li className="posts">
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
@@ -46,7 +46,7 @@ export function UserDetails() {
         likesArray.splice(6, 4);
     }
 
-    const dislikesArray = myData.posts.map(post =>
+    const dislikesArray = myData.dislikes.map(post =>
         <li className="posts">
             <img src={post.imageUrl} />
             <p>{post.createdAt}</p>
@@ -78,17 +78,17 @@ export function UserDetails() {
                 <ul className="list-container">
                     {postsArray}
                 </ul>
-                    {!flagPosts && <button className="load-more" onClick={() => setFlagPosts(true)}>Load more</button>}
+                    {!flagPosts && <button className="load-more" onClick={() => setFlagPosts(true)}>Load More</button>}
                 <h3>Posts {firstName} Liked</h3>
                 <ul className="list-container">
                     {likesArray}
                 </ul>
-                {!likedPosts && <button className="load-more" onClick={() => setLikedPosts(true)}>Load more</button>}
+                {!likedPosts && <button className="load-more" onClick={() => setLikedPosts(true)}>Load More</button>}
                 <h3>Posts {firstName} Disliked</h3>
                 <ul className="list-container">
                     {dislikesArray}
                 </ul>
-                {!dislikedPosts && <button className="load-more" onClick={() => setDislikedPosts(true)}>Load more</button>}
+                {!dislikedPosts && <button className="load-more" onClick={() => setDislikedPosts(true)}>Load More</button>}
             </div>
         </div >)
 }

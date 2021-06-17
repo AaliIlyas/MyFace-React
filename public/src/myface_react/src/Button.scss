@@ -1,0 +1,13 @@
+@import "Constant";
+
+@mixin button() {
+    color: $primary;
+    size: 24px;
+    line-height: 40px;
+    width: auto;
+    border-radius: 5px;
+    border: 2px solid $primary;
+    background-color: $backgroundColor;
+    padding: 0px 40px;
+    margin: 2px;
+}

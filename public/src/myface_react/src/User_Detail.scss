@@ -1,9 +1,8 @@
+@import "constant";
+@import "Button";
+
 .cover-image {
     width: 100%;
-}
-
-.body-container {
-    margin: 2%;
 }
 
 .profile-image {
@@ -12,7 +11,6 @@
 }
 
 .user-profile-container {
-    
     display: flex;
 }
 
@@ -22,26 +20,32 @@
 }
 
 .list-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    // flex-direction: row;
+    // flex-wrap: wrap;
     justify-content: center;
     padding: 0;
     margin: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 48px 48px;
 }
 
 .posts {
     list-style-type: none;
-    padding: $cardPaddingDesktop;
-    width: 25%;
-    margin: 5px;
-}
-
-.posts img {
+    // padding: $cardPaddingDesktop;
     width: 100%;
+
+    img {
+        width: 100%;
+    }
 }
 
 .contents {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: addThings(20, 20) *1px;
+    margin-right: addThings(20, 20) *1px;
+}
+
+.load-more {
+    @include button();
 }
