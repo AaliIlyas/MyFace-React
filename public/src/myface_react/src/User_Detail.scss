@@ -34,8 +34,14 @@
     list-style-type: none;
     padding: $cardPaddingDesktop;
     width: 25%;
+    margin: 5px;
 }
 
 .posts img {
     width: 100%;
+}
+
+.contents {
+    margin-left: 40px;
+    margin-right: 40px;
 }
