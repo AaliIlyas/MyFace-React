@@ -26,7 +26,7 @@ router.post('/create/',
     const post = request.body;
 
     await createPost(post as CreatePostRequest);
-    return response.status(200);
+    return response.sendStatus(200).json();
 });
 
 router.post('/:postId/like/', async (request, response) => {
@@ -36,7 +36,7 @@ router.post('/:postId/like/', async (request, response) => {
 
     await likePost(userId, postId);
 
-    return response.status(200);
+    return response.sendStatus(200);
 });
 
 router.post('/:postId/dislike/', async (request, response) => {
@@ -45,7 +45,7 @@ router.post('/:postId/dislike/', async (request, response) => {
     const returnUrl = request.params?.returnUrl;
 
     await dislikePost(userId, postId);
-    return response.status(200);
+    return response.sendStatus(200);
 });
 
 export default router;

@@ -79,16 +79,19 @@ export function UserDetails() {
                     {postsArray}
                 </ul>
                     {!flagPosts && <button className="load-more" onClick={() => setFlagPosts(true)}>Load More</button>}
+                    {flagPosts && <button className="load-more" onClick={() => setFlagPosts(false)}>Show Fewer</button>}
                 <h3>Posts {firstName} Liked</h3>
                 <ul className="list-container">
                     {likesArray}
                 </ul>
                 {!likedPosts && <button className="load-more" onClick={() => setLikedPosts(true)}>Load More</button>}
+                {likedPosts && <button className="load-more" onClick={() => setLikedPosts(false)}>Show Fewer</button>}
                 <h3>Posts {firstName} Disliked</h3>
                 <ul className="list-container">
                     {dislikesArray}
                 </ul>
                 {!dislikedPosts && <button className="load-more" onClick={() => setDislikedPosts(true)}>Load More</button>}
+                {dislikedPosts && <button className="load-more" onClick={() => setDislikedPosts(false)}>Show Fewer</button>}
             </div>
         </div >)
 }

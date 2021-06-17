@@ -3,6 +3,7 @@ import { Posts } from './components/Posts';
 import { UserList } from './components/User_List';
 import { UserDetails } from './components/User_Details';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { CreatePosts } from './components/Create_Posts';
 
 function App() {
     return (
@@ -22,7 +23,7 @@ function App() {
 
                 <Switch>
                     <Route exact path="/">
-                        <Redirect to="/posts" />
+                        <Redirect to="/users/id/12" />
                     </Route>
                     <Route exact path="/users/">
                         <UserList />
@@ -36,12 +37,15 @@ function App() {
                     <Route exact path="/posts/">
                         <Posts />
                     </Route>
+                    <Route exact path="/posts/create">
+                        <CreatePosts />
+                    </Route>
                     <Route exact path="/posts/:page">
                         <Posts />
                     </Route>
-					<Route path="/">
-						Error: Page does not exist
-					</Route>
+                    <Route path="/">
+                        Error: Page does not exist
+                    </Route>
                 </Switch>
             </div>
         </Router>
