@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { RenderPost } from './Render_Post';
 
 export function Posts() {
     const [myData, setMyData] = useState(null);
     const { page } = useParams();
-    
+
+    const [likes, setLikes] = useState(0);
+
     useEffect(() => {
         fetch(`http://localhost:3001/posts/?page=${page}&pageSize=10`)
             .then(response => response.json())
             .then(data => setMyData(data))
-    }, [page]);
+    }, []);
 
     if (!myData) {
         return (
@@ -18,23 +21,23 @@ export function Posts() {
             </div>)
     }
 
-    const dataArray = myData.results.map(posts => 
-        <li className="posts">
-            <h2>{posts.message}</h2>
-            <h3>{posts.postedBy.name}</h3>
-            <img src={posts.imageUrl} />
-            <p>Likes🔥: {posts.likedBy.length} </p>
-            <p>Dislikes 🤢: {posts.dislikedBy.length} </p>
-        </li>
+    function handleLikeClick(postId) {
+        fetch(`http://localhost:3001/posts/${postId}/like`, { method: 'POST' })
+            .then(response => console.log(response.status)
+            )
+    }
+
+    const dataArray = myData.results.map(posts =>
+        <RenderPost individualPost={posts} />
     );
 
     return (
-        <div>
+        <div className="contents">
             <h1>Posts</h1>
-            <ul>
+            <ul className="list-container">
                 {dataArray}
             </ul>
-            <Link to={`/posts/${isNaN(page) ? 2 :  parseInt(page) + 1}`}>Next</Link>
-            {myData.previous && !isNaN(page) && <Link to={`/posts/${parseInt(page) - 1}`}>Prev</Link>}
+            {myData.previous && !isNaN(page) && <Link to={`/posts/${parseInt(page) - 1}`} className="prev">Prev</Link>}
+            <Link to={`/posts/${isNaN(page) ? 2 : parseInt(page) + 1}`} className="next" >Next</Link>
         </div>)
 }

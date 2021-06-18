@@ -21,8 +21,6 @@
 
 .list-container {
     display: grid;
-    // flex-direction: row;
-    // flex-wrap: wrap;
     justify-content: center;
     padding: 0;
     margin: 0;
@@ -33,7 +31,6 @@
 
 .posts {
     list-style-type: none;
-    // padding: $cardPaddingDesktop;
     width: 100%;
 
     img {

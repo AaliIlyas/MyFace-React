@@ -1,6 +1,7 @@
 @import "constant";
 @import "User_Detail";
 @import "Button";
+@import "Posts";
 
 body {
     background-color: $backgroundColor;
@@ -9,4 +10,5 @@ body {
 
 .posts {
     background-color: $darkerBackgroundColor;
+    position: relative;
 }

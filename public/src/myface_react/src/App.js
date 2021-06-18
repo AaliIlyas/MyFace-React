@@ -4,6 +4,7 @@ import { UserList } from './components/User_List';
 import { UserDetails } from './components/User_Details';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { CreatePosts } from './components/Create_Posts';
+import { CreateUser } from './components/Create_User';
 
 function App() {
     return (
@@ -25,13 +26,16 @@ function App() {
                     <Route exact path="/">
                         <Redirect to="/users/id/12" />
                     </Route>
+                    <Route exact path="/users/create">
+                        <CreateUser />
+                    </Route>
                     <Route exact path="/users/">
                         <UserList />
                     </Route>
                     <Route exact path="/users/:page">
                         <UserList />
                     </Route>
-                    <Route path="/users/id/:userId">
+                    <Route exact path="/users/id/:userId">
                         <UserDetails />
                     </Route>
                     <Route exact path="/posts/">
