@@ -15,9 +15,10 @@ export function CreatePosts() {
 
     function submit(event) {
         event.preventDefault();
-        const obj = {}
-        obj["message"] = userMessage;
-        obj["imageUrl"] = userImage;
+        const obj = {
+            message: userMessage,
+            imageUrl: userImage
+        }
         console.log(obj);
 
         fetch('http://localhost:3001/posts/create/', {

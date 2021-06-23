@@ -6,13 +6,15 @@ export function Posts() {
     const [myData, setMyData] = useState(null);
     const { page } = useParams();
 
-    const [likes, setLikes] = useState(0);
-
-    useEffect(() => {
+    async function refreshData() {
         fetch(`http://localhost:3001/posts/?page=${page}&pageSize=10`)
             .then(response => response.json())
             .then(data => setMyData(data))
-    }, []);
+    }
+
+    useEffect(() => {
+        refreshData()
+    }, [page]);
 
     if (!myData) {
         return (
@@ -21,14 +23,8 @@ export function Posts() {
             </div>)
     }
 
-    function handleLikeClick(postId) {
-        fetch(`http://localhost:3001/posts/${postId}/like`, { method: 'POST' })
-            .then(response => console.log(response.status)
-            )
-    }
-
     const dataArray = myData.results.map(posts =>
-        <RenderPost individualPost={posts} />
+        <RenderPost individualPost={posts} refreshData={refreshData} />
     );
 
     return (
